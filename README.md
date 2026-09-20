@@ -1,13 +1,14 @@
 # Customer Churn Prediction
 
-A machine learning project for predicting customer churn using the Telco Customer Churn dataset.  
-The goal of this project is to analyze customer behavior, identify factors associated with churn, and build classification models to predict customers who are likely to leave the service.
+A machine learning project for predicting customer churn using the Telco Customer Churn dataset.
+
+The goal of this project is to analyze customer behavior, identify factors associated with customer churn, and develop classification models capable of predicting customers who are likely to leave a subscription service.
 
 ---
 
 ## Project Overview
 
-Customer churn prediction is an important problem for subscription-based businesses because retaining existing customers is often more cost-effective than acquiring new ones.
+Customer churn prediction is an important problem for subscription-based businesses because retaining existing customers can be more cost-effective than acquiring new ones.
 
 This project follows a complete machine learning workflow:
 
@@ -15,8 +16,8 @@ This project follows a complete machine learning workflow:
 - Data cleaning and preprocessing
 - Exploratory data analysis (EDA)
 - Feature engineering
-- Model training
-- Model comparison
+- Machine learning model development
+- Model comparison and evaluation
 - Feature importance analysis
 - Saving trained models and evaluation reports
 
@@ -24,7 +25,7 @@ This project follows a complete machine learning workflow:
 
 ## Dataset
 
-The project uses the **Telco Customer Churn Dataset** containing information about 7,043 customers.
+The project uses the **Telco Customer Churn Dataset**, which contains information about 7,043 customers.
 
 The dataset includes:
 
@@ -53,10 +54,10 @@ where:
 The following preprocessing steps were applied:
 
 - Removed missing values caused by empty `TotalCharges` entries
-- Converted `TotalCharges` from object to numeric format
-- Encoded categorical variables using one-hot encoding
+- Converted `TotalCharges` from object type to numeric format
 - Removed `customerID` because it does not provide predictive information
-- Split data into training and testing sets
+- Applied one-hot encoding to categorical variables
+- Split the dataset into training and testing sets
 
 Final processed dataset:
 
@@ -72,17 +73,43 @@ Train-test split:
 
 ## Exploratory Data Analysis
 
-Key observations from the analysis:
+The exploratory analysis investigated relationships between customer characteristics and churn behavior.
 
-- Overall churn rate:
+Key observations:
+
+- Overall churn distribution:
 
   - No churn: 73.46%
   - Churn: 26.54%
 
 - Customers with shorter tenure showed higher churn rates.
-- Month-to-month contracts had a higher churn proportion compared with longer contracts.
-- Fiber optic internet customers showed higher churn compared with other internet service categories.
-- Customers with lower total tenure and higher monthly charges were more likely to churn.
+- Month-to-month contracts were associated with higher churn compared with longer-term contracts.
+- Fiber optic internet customers showed higher churn proportions.
+- Billing-related features such as monthly charges and total charges showed strong relationships with churn behavior.
+
+---
+
+## Visual Analysis
+
+The project includes visual analysis of important churn patterns.
+
+Generated visualizations include:
+
+- Overall churn distribution
+- Churn by contract type
+- Churn by internet service
+- Churn by payment method
+- Relationship between tenure and churn
+- Monthly charges analysis
+- Total charges analysis
+
+All generated figures are stored in the `figures/` directory.
+
+Examples:
+
+![Churn Distribution](figures/churn_distribution.png)
+
+![Contract vs Churn](figures/contract_vs_churn.png)
 
 ---
 
@@ -114,14 +141,17 @@ Evaluation metrics:
 | Random Forest | 0.7719 | 0.6604 | 0.6061 |
 | Gradient Boosting | 0.7960 | 0.5294 | 0.5798 |
 
-The models show different trade-offs between overall accuracy and detecting churn cases.  
-For churn prediction problems, recall is an important metric because identifying potential churn customers can help businesses take preventive actions.
+The models demonstrate different trade-offs between overall accuracy and detecting churn cases.
+
+For churn prediction tasks, recall is an important metric because correctly identifying potential churn customers can help businesses take preventive actions.
 
 ---
 
 ## Feature Importance
 
-The most influential features identified by the Gradient Boosting model were:
+Feature importance analysis was performed using the Gradient Boosting model.
+
+Top influential features:
 
 | Feature | Importance |
 |---|---:|
@@ -132,7 +162,20 @@ The most influential features identified by the Gradient Boosting model were:
 | InternetService (Fiber optic) | 0.0392 |
 | PaymentMethod (Electronic check) | 0.0377 |
 
-These results indicate that customer loyalty duration, billing information, and contract type play important roles in churn prediction.
+The results indicate that customer loyalty duration, billing information, and contract type are important factors in churn prediction.
+
+---
+
+## Saved Model
+
+The trained Gradient Boosting model was saved using Joblib:
+
+```
+models/
+└── gradient_boosting_churn_model.pkl
+```
+
+The saved model can be loaded for future predictions and deployment experiments.
 
 ---
 
@@ -145,12 +188,22 @@ customer-churn-prediction/
 │   ├── raw/
 │   └── processed/
 
+├── figures/
+│   ├── churn_distribution.png
+│   ├── contract_vs_churn.png
+│   ├── internet_service_vs_churn.png
+│   ├── monthly_charges_vs_churn.png
+│   ├── payment_method_vs_churn.png
+│   ├── tenure_vs_churn.png
+│   └── total_charges_vs_churn.png
+
 ├── models/
 │   └── gradient_boosting_churn_model.pkl
 
 ├── notebooks/
 │   ├── 03_data_exploration_new.ipynb
-│   └── 04_model_training_new.ipynb
+│   ├── 04_model_training_new.ipynb
+│   └── 05_visualization.ipynb
 
 ├── reports/
 │   ├── model_comparison.csv
@@ -161,6 +214,34 @@ customer-churn-prediction/
 ├── docs/
 └── README.md
 ```
+
+---
+
+## How to Run
+
+Clone the repository:
+
+```bash
+git clone https://github.com/AnaAlh/customer-churn-prediction.git
+```
+
+Create and activate a virtual environment:
+
+```bash
+python -m venv .venv
+```
+
+Install dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+Run notebooks in order:
+
+1. `03_data_exploration_new.ipynb`
+2. `04_model_training_new.ipynb`
+3. `05_visualization.ipynb`
 
 ---
 
@@ -179,7 +260,7 @@ customer-churn-prediction/
 
 ## Future Improvements
 
-Possible future improvements include:
+Possible future improvements:
 
 - Hyperparameter optimization
 - Cross-validation
