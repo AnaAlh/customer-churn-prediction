@@ -38,7 +38,7 @@ The dataset includes:
 
 Target variable:
 
-```
+```text
 Churn
 ```
 
@@ -78,13 +78,15 @@ The exploratory analysis investigated relationships between customer characteris
 Key observations:
 
 - Overall churn distribution:
-
   - No churn: 73.46%
   - Churn: 26.54%
 
 - Customers with shorter tenure showed higher churn rates.
+
 - Month-to-month contracts were associated with higher churn compared with longer-term contracts.
+
 - Fiber optic internet customers showed higher churn proportions.
+
 - Billing-related features such as monthly charges and total charges showed strong relationships with churn behavior.
 
 ---
@@ -118,8 +120,11 @@ Examples:
 Four classification models were trained and evaluated:
 
 1. Logistic Regression
+
 2. Logistic Regression with class balancing
+
 3. Random Forest
+
 4. Gradient Boosting
 
 Evaluation metrics:
@@ -170,8 +175,9 @@ The results indicate that customer loyalty duration, billing information, and co
 
 The trained Gradient Boosting model was saved using Joblib:
 
-```
+```text
 models/
+
 └── gradient_boosting_churn_model.pkl
 ```
 
@@ -181,7 +187,7 @@ The saved model can be loaded for future predictions and deployment experiments.
 
 ## Project Structure
 
-```
+```text
 customer-churn-prediction/
 
 ├── data/
@@ -201,17 +207,23 @@ customer-churn-prediction/
 │   └── gradient_boosting_churn_model.pkl
 
 ├── notebooks/
-│   ├── 03_data_exploration_new.ipynb
-│   ├── 04_model_training_new.ipynb
-│   └── 05_visualization.ipynb
+│   ├── 01_data_exploration.ipynb
+│   ├── 02_model_training.ipynb
+│   ├── 03_visualization.ipynb
+│   └── archive/
+│       ├── 01_data_exploration.ipynb
+│       └── 02_model_training.ipynb
 
 ├── reports/
 │   ├── model_comparison.csv
 │   └── feature_importance.csv
 
 ├── src/
+
 ├── tests/
+
 ├── docs/
+
 └── README.md
 ```
 
@@ -239,9 +251,11 @@ pip install -r requirements.txt
 
 Run notebooks in order:
 
-1. `03_data_exploration_new.ipynb`
-2. `04_model_training_new.ipynb`
-3. `05_visualization.ipynb`
+1. `01_data_exploration.ipynb`
+
+2. `02_model_training.ipynb`
+
+3. `03_visualization.ipynb`
 
 ---
 
