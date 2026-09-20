@@ -1,0 +1,6 @@
+Model,Accuracy,Churn Recall,Churn F1
+Logistic Regression,0.801778,0.545151,0.593834
+Random Forest,0.776,0.640803,0.603179
+Gradient Boosting,0.801778,0.513043,0.578772
+Random Forest Tuned,0.79,0.51,0.57
+Gradient Boosting Tuned,0.79,0.51,0.57
